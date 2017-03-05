@@ -4,7 +4,7 @@ module EPUBService
   def self.extract_url(url)
     error = nil
     extract = nil
-    io = open url
+    # io = open url
     error = 'Not implemented'
     return extract, error
   end

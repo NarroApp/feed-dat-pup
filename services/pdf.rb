@@ -5,10 +5,12 @@ module PDFService
   def self.extract_url(url)
     error = nil
     extract = nil
-    io = open url
     begin
+      io = open url
       extract = extract_io io
       extract[:url] = url
+    rescue OpenURI::HTTPError => e
+      error = e
     rescue Exception => e
       error = e
     rescue MalformedPDFError => e
