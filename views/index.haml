@@ -1,0 +1,25 @@
+%html
+  %head
+    %title Feed Dat Pup
+    / By www.narro.co
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
+ 
+  %body
+    %main
+      %h1 Feed Dat Pup
+      %p.desc Convert EPUB and PDF files to plain text - the ultimate standard format.
+      %p.desc
+        %a{href: "https://github.com/narroapp/feed-dat-pup"} More information
+      %div.form-wrap
+        %form{method: "POST", action: "/extracts/pdf", enctype: "multipart/form-data"}
+          %legend PDF text extraction
+          %input{type: "url", name: "url", placeholder: "https://example.com/pdf.pdf"}
+          %input{type: "file", name: "file"}
+          %button{type: "submit"} Extract
+      %hr
+      %div.form-wrap
+        %form{method: "POST", action: "/extracts/epub", enctype: "multipart/form-data"}
+          %legend EPUB text extraction
+          %input{type: "url", name: "url", placeholder: "https://example.com/epub.epub"}
+          %input{type: "file", name: "file"}
+          %button{type: "submit"} Extract
