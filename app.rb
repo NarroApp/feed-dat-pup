@@ -4,22 +4,30 @@ require './environments'
 require './services/pdf'
 require './services/epub'
 
+set :haml, :format => :html5
+
 get '/' do
-  redirect 'https://www.narro.co'
+  haml :index
 end
 
 post '/extracts/pdf' do
-  if params
+  extracted = false
+  error = false
+  if !params
     data = JSON.parse request.body.read
     logger.info data
     url = data['url']
-    # file = data['file']
+    file = data['file']
   else
     logger.info params
     url = params[:url]
-    # file = params[:file]
+    file = params[:file]
   end
-  extracted, error = PDFService.extract_url(url)
+  if file
+    extracted, error = PDFService.extract_file(file)
+  elsif url
+    extracted, error = PDFService.extract_url(url)
+  end
   content_type 'application/json'
   if extracted
     status 200
@@ -31,7 +39,7 @@ post '/extracts/pdf' do
 end
 
 post '/extracts/epub' do
-  if params
+  if !params
     data = JSON.parse request.body.read
     logger.info data
     url = data['url']
