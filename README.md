@@ -44,3 +44,11 @@ Example PDF extraction response:
     "version": 1.3
 }
 ~~~
+
+## Installation
+
+~~~sh
+# clone the repository...
+bundle install
+ruby app.rb
+~~~
