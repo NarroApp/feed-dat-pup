@@ -52,3 +52,9 @@ Example PDF extraction response:
 bundle install
 ruby app.rb
 ~~~
+
+## What's with the name?
+
+~~~
+EAT PDF EPUB =~> FEED DAT PUP
+~~~
