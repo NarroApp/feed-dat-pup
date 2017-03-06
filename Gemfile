@@ -8,6 +8,7 @@ gem "haml"
 gem "rack-cache"
 gem "pdf-reader"
 gem "rubyzip"
+gem "nokogiri"
 
 group :development do
   gem "tux"
