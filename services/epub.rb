@@ -54,8 +54,17 @@ module EPUBService
       entry.extract(filename + '_' + entry.name.split('/').last)
     end
     toc_xml = Nokogiri::XML(File.open(filename + '_toc.ncx'))
-    content_xml = Nokogiri::XML(File.open(filename + '_content.opf'))
-    author = content_xml.xpath('//dc:creator', 'dc' => 'http://purl.org/dc/elements/1.1/').first.content
+    begin
+      content_xml = Nokogiri::XML(File.open(filename + '_content.opf'))
+      author = content_xml.xpath('//dc:creator', 'dc' => 'http://purl.org/dc/elements/1.1/').first.content
+    rescue Exception => e
+      begin
+        content_xml = Nokogiri::XML(File.open(filename + '_package.opf'))
+        author = content_xml.xpath('//dc:creator', 'dc' => 'http://purl.org/dc/elements/1.1/').first.content
+      rescue Exception => e
+        author = nil
+      end
+    end
     version = toc_xml.at_css('ncx').attributes['version'].value
     title = toc_xml.css('ncx docTitle text').first.content
     nav_points = toc_xml.css('ncx navMap navPoint content')
