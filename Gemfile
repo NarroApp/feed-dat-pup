@@ -7,6 +7,7 @@ gem "thin"
 gem "haml"
 gem "rack-cache"
 gem "pdf-reader"
+gem "rubyzip"
 
 group :development do
   gem "tux"

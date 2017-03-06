@@ -43,13 +43,17 @@ post '/extracts/epub' do
     data = JSON.parse request.body.read
     logger.info data
     url = data['url']
-    # file = data['file']
+    file = data['file']
   else
     logger.info params
     url = params[:url]
-    # file = params[:file]
+    file = params[:file]
   end
-  extracted, error = EPUBService.extract_url(url)
+  if file
+    extracted, error = EPUBService.extract_file(file)
+  elsif url
+    extracted, error = EPUBService.extract_url(url)
+  end
   content_type 'application/json'
   if extracted
     status 200
