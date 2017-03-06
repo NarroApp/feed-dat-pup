@@ -20,6 +20,10 @@ curl localhost:4567/extracts/pdf -X POST --data '{"url":"http://www.pdf995.com/s
 # JSON response
 curl localhost:4567/extracts/epub -X POST --data 'url=http://www.example.com/samples/bookish.epub'
 # JSON response
+curl localhost:4567/extracts/epub -X POST -F file=@bookish.epub
+# JSON response
+curl localhost:4567/extracts/pdf -X POST -F file=@pdf.pdf
+# JSON response
 ~~~
 
 Example PDF extraction response:
