@@ -11,12 +11,14 @@ POST /extracts/pdf      # extract PDF text (pass url|file)
 POST /extracts/epub     # extract EPUB text (pass url|file)
 ~~~
 
-## PDF Example
+## Example
 
 ~~~sh
 curl localhost:4567/extracts/pdf -X POST --data 'url=http://www.pdf995.com/samples/pdf.pdf'
 # JSON response
 curl localhost:4567/extracts/pdf -X POST --data '{"url":"http://www.pdf995.com/samples/pdf.pdf"}' --header 'content-type: application/json'
+# JSON response
+curl localhost:4567/extracts/epub -X POST --data 'url=http://www.example.com/samples/bookish.epub'
 # JSON response
 ~~~
 
@@ -42,6 +44,26 @@ Example PDF extraction response:
     "text": "<combined text of all pages>",
     "url": "http://www.pdf995.com/samples/pdf.pdf",
     "version": 1.3
+}
+~~~
+
+Example EPUB extraction response:
+
+~~~json
+{
+    "info": {
+        "Author": "Samuel Shem",
+        "Title": "The House of God"
+    },
+    "metadata": null,
+    "pages": [
+        "<page 1 text>",
+        "<page 2 text>",
+        "<page 3 text>"
+    ],
+    "text": "<combined text of all pages>",
+    "file": "the_house_of_god.epub",
+    "version": "2005-1"
 }
 ~~~
 
