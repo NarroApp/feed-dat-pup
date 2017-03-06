@@ -12,14 +12,14 @@
         %a{href: "https://github.com/narroapp/feed-dat-pup"} More information
       %div.form-wrap
         %form{method: "POST", action: "/extracts/pdf", enctype: "multipart/form-data"}
-          %legend PDF text extraction
+          %legend PDF text extraction, pass in a URL or a file from your machine
           %input{type: "url", name: "url", placeholder: "https://example.com/pdf.pdf"}
           %input{type: "file", name: "file"}
           %button{type: "submit"} Extract
       %hr
       %div.form-wrap
         %form{method: "POST", action: "/extracts/epub", enctype: "multipart/form-data"}
-          %legend EPUB text extraction
+          %legend EPUB text extraction, pass in a URL or a file from your machine
           %input{type: "url", name: "url", placeholder: "https://example.com/epub.epub"}
           %input{type: "file", name: "file"}
           %button{type: "submit"} Extract
