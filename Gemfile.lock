@@ -31,6 +31,7 @@ GEM
       rack-test (~> 0.6.2)
       ripl (>= 0.7.0)
     ruby-rc4 (0.1.5)
+    rubyzip (1.2.1)
     sinatra (1.4.8)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -54,6 +55,7 @@ DEPENDENCIES
   haml
   pdf-reader
   rack-cache
+  rubyzip
   sinatra
   thin
   tux
