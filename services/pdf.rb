@@ -51,17 +51,20 @@ module PDFService
       pages:      [],
       version:    nil,
       metadata:   nil,
-      info:       nil
+      info:       {}
     }
     reader = PDF::Reader.new io
     reader.pages.each do |page|
-      extract[:text] += page.text
+      page_text = page.text.force_encoding("ISO-8859-1").encode("UTF-8")
+      extract[:text] += page_text
       extract[:text] += '\n'
+      extract[:pages].push page_text
     end
-    extract[:info]     = reader.info
-    extract[:pages]    = reader.pages
+    reader.info.map do |k, v|
+      extract[:info][k] = v.force_encoding("ISO-8859-1").encode("UTF-8")
+    end
     extract[:version]  = reader.pdf_version
-    extract[:metadata] = reader.metadata
+    extract[:metadata] = reader.metadata.force_encoding("ISO-8859-1").encode("UTF-8")
     return extract
   end
 
