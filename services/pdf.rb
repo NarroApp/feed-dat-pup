@@ -64,7 +64,9 @@ module PDFService
       extract[:info][k] = v.force_encoding("ISO-8859-1").encode("UTF-8")
     end
     extract[:version]  = reader.pdf_version
-    extract[:metadata] = reader.metadata.force_encoding("ISO-8859-1").encode("UTF-8")
+    if reader.metadata
+      extract[:metadata] = reader.metadata.force_encoding("ISO-8859-1").encode("UTF-8")
+    end
     return extract
   end
 
