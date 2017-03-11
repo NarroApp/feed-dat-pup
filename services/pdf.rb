@@ -61,10 +61,11 @@ module PDFService
       extract[:pages].push page_text
     end
     reader.info.map do |k, v|
+      next unless v.respond_to? 'force_encoding'
       extract[:info][k] = v.force_encoding("ISO-8859-1").encode("UTF-8")
     end
     extract[:version]  = reader.pdf_version
-    if reader.metadata
+    if reader.metadata and reader.metadata.respond_to? 'force_encoding'
       extract[:metadata] = reader.metadata.force_encoding("ISO-8859-1").encode("UTF-8")
     end
     return extract
