@@ -63,3 +63,7 @@ post '/extracts/epub' do
     error.to_json
   end
 end
+
+get '/wake.json' do
+  { message: 'Wakey wakey, eggs \'n bakey...' }.to_json
+end
