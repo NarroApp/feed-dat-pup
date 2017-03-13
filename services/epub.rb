@@ -73,7 +73,7 @@ module EPUBService
     title = toc_xml.css('ncx docTitle text').first.content
     nav_points = toc_xml.css('ncx navMap navPoint content')
     nav_points.each do |point|
-      page_name = point.attributes['src'].value.split('/').last
+      page_name = point.attributes['src'].value.split('/').last.split('#').first
       page_xml = Nokogiri::XML(File.open(filename + '_' + page_name))
       page_body = page_xml.css('html body p, html body h1, html body h2, html body h3, html body blockquote')
       page_body = page_body.map do |child|
