@@ -55,8 +55,10 @@ module EPUBService
     end
     if File.exist?(filename + '_toc.ncx')
       toc_xml = Nokogiri::XML(File.open(filename + '_toc.ncx'))
-    else
+    elsif File.exist?(filename + '_index.ncx')
       toc_xml = Nokogiri::XML(File.open(filename + '_index.ncx'))
+    else
+      toc_xml = Nokogiri::XML(File.open(filename + '_ncx.ncx'))
     end
     begin
       content_xml = Nokogiri::XML(File.open(filename + '_content.opf'))
