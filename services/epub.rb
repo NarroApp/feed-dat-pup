@@ -53,7 +53,11 @@ module EPUBService
     files.each do |entry|
       entry.extract(filename + '_' + entry.name.split('/').last)
     end
-    toc_xml = Nokogiri::XML(File.open(filename + '_toc.ncx'))
+    if File.exist?(filename + '_toc.ncx')
+      toc_xml = Nokogiri::XML(File.open(filename + '_toc.ncx'))
+    else
+      toc_xml = Nokogiri::XML(File.open(filename + '_index.ncx'))
+    end
     begin
       content_xml = Nokogiri::XML(File.open(filename + '_content.opf'))
       author = content_xml.xpath('//dc:creator', 'dc' => 'http://purl.org/dc/elements/1.1/').first.content
