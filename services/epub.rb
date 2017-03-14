@@ -79,14 +79,15 @@ module EPUBService
       page_xml = Nokogiri::XML(File.open(filename + '_' + page_name))
       page_body = page_xml.css('html body p, html body h1, html body h2, html body h3, html body blockquote')
       page_body = page_body.map do |child|
-        child.content.force_encoding("ISO-8859-1").encode("UTF-8")
+        child.content
+        # child.content.force_encoding("ISO-8859-1").encode("UTF-8")
       end
       extract[:pages].push page_body.join("\n\n")
     end
 
     extract[:text] = extract[:pages].join("\n\n")
-    extract[:info][:Title] = title.force_encoding("ISO-8859-1").encode("UTF-8")
-    extract[:info][:Author] = author.force_encoding("ISO-8859-1").encode("UTF-8")
+    extract[:info][:Title] = title
+    extract[:info][:Author] = author
     extract[:version] = version
     return extract
   end

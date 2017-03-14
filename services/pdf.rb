@@ -55,7 +55,11 @@ module PDFService
     }
     reader = PDF::Reader.new io
     reader.pages.each do |page|
-      page_text = page.text.force_encoding("ISO-8859-1").encode("UTF-8")
+      if page.text.encoding == 'UTF-8'
+        page_text = page.text
+      else
+        page_text = page.text.force_encoding("ISO-8859-1").encode("UTF-8")
+      end
       extract[:text] += page_text
       extract[:text] += '\n'
       extract[:pages].push page_text

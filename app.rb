@@ -28,7 +28,7 @@ post '/extracts/pdf' do
   elsif url
     extracted, error = PDFService.extract_url(url)
   end
-  content_type 'application/json'
+  content_type 'application/json; charset=UTF-8'
   if extracted
     status 200
     extracted.to_json
@@ -54,7 +54,7 @@ post '/extracts/epub' do
   elsif url
     extracted, error = EPUBService.extract_url(url)
   end
-  content_type 'application/json'
+  content_type 'application/json; charset=UTF-8'
   if extracted
     status 200
     extracted.to_json
